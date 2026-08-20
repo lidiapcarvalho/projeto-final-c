@@ -30,3 +30,25 @@
 - `pacman -Ql mingw-w64-ucrt-x86_64-ncurses | grep ncurses.h`
 - `ls /ucrt64/lib/libncurses*`
 - `gcc teste.c -I/ucrt64/include/ncurses -lncursesw -o teste`
+
+## Sessão 2 - 20/08/2026
+
+**Funcionalidades implementadas:**
+- Criada a representação da pista através de uma matriz de caracteres e implementada a função `draw_track()` para desenhá-lo no terminal.
+- Configurado o `main.c`para inicializar o `ncurses`.
+- Criados ficheiros `car.c`e `car.h`, definida uma posição inicial para o carro e implementada a função `draw_car()`.
+
+**Maior dificuldade:**
+- Compreender a utilização do `ncurses`para desenhar elementos em posições específicas do terminal e integrar os diferentes ficheiros do projeto através do `Makefil`.
+
+**Como resolvi:**
+- Utilizei `mvprintw()` para posicionar os elementos no terminal e organizei e implementação da pista e do carro em ficheiros separados. O `main.c`ficou responsável por inicializar o `ncurses`e chamar as funções necessárias.
+
+**Próximo passo planeado:**
+- Corrigir a posição inicial do carro para que fique sobre a pista e implementar o movimento através das teclas direcionais.
+
+**Linhas de código escritas hoje (estimativa):** ~40
+
+**Recursos consultados.**
+- Documentação da biblioteca `ncurses`.
+- Documentação do `mvprintw()`e das funções de inicialização/terminação do `ncurses`.
