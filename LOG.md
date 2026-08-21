@@ -94,3 +94,27 @@
 - Implementar o sistema de voltas e a linha de partida/chegada.
 
 **Linhas de código escritas na sessão (estimativa):** 38
+
+## Sessão 5 - 21/08/2026 - 15:45 - 20:15
+
+**Funcionalidades implementadas:**
+- Iniciada a implementação do sistema de voltas. 
+- Foi criado o estado da corrida no `game.c`, incluindo o contador de voltas e o sistema de checkpoint. 
+- Implementado o primeiro checkpoint na posição `(0,5)` e ajustada a lógica de deteção da linha de partida/chegada.
+
+**Maior dificuldade:**
+- A primeira implementação permitia que o contador de voltas aumentasse incorretamente, incluindo várias voltas sem o carro completar o percurso. 
+- Foi necessário rever a lógica de `crossed_finish` e perceber que o checkpoint precisava de ser utilizado como condição para validar uma volta.
+
+**Como resolvi:**
+- O contador passou a exigir que o carro saia da linha de partida/chegada, passe pelo checkpoint e só depois volte à linha de chegada para completar uma volta. 
+- A variável `checkpoint` passou a controlar se o percurso necessário foi realizado antes de incrementar `lap`.
+
+**Testes realizados:** 
+- Confirmado que voltar diretamente à linha de chegada sem passar pelo checkpoint não incrementa a volta. 
+- Confirmado também que permanecer ou movimentar-se junto à linha de chegada não provoca múltiplas contagens.
+
+**Próximo passo planeado:** 
+- Implementar um segundo checkpoint, aproximadamente na posição `(4,10)`, para tornar a validação da volta mais robusta.
+
+- **Linhas de código escritas na sessão (estimativa):** 68

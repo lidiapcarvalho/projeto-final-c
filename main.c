@@ -1,6 +1,7 @@
 #include <ncurses.h>
 #include "track.h"
 #include "car.h"
+#include "game.h"
 
 int main(void)
 {
@@ -11,6 +12,7 @@ int main(void)
     // Permite ao ncurses reconhecer corretamente as teclas especiais, como as setas
 
     init_car();
+    init_game();
 
     while(1)
     {
@@ -19,6 +21,7 @@ int main(void)
 
         draw_track();
         draw_car();
+        draw_game();
 
         key = getch();
         // Faz o programa esperar por uma tecla.
@@ -31,6 +34,7 @@ int main(void)
         }
 
         move_car(key);
+        update_lap();
         refresh();
     }
     
