@@ -16,7 +16,7 @@ int main(void)
     {
         clear();
         // Limpa o ecrã antes de desenharmos novamente
-        
+
         draw_track();
         draw_car();
 
@@ -24,7 +24,14 @@ int main(void)
         // Faz o programa esperar por uma tecla.
         // Sem isto, o programa poderia desenhar a pista e terminar imediatamente
 
+        // Comando de saída
+        if (key == 'q' || key == 'Q')
+        {
+            break;
+        }
+
         move_car(key);
+        refresh();
     }
     
     endwin();

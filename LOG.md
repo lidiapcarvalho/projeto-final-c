@@ -17,7 +17,7 @@
 **Próximo passo planeado:**
 - Começar a implementação da pista e testar a sua representação no terminal através do `ncurses`.
 
-**Linhas de código escritas hoje (estimativa):** ~0
+**Linhas de código escritas na sessão (estimativa):** 0
 
 ### Recursos consultados:
 - MSYS2 - gestão de pacotes e ambiente UCRT64.
@@ -47,7 +47,7 @@
 **Próximo passo planeado:**
 - Corrigir a posição inicial do carro para que fique sobre a pista e implementar o movimento através das teclas direcionais.
 
-**Linhas de código escritas hoje (estimativa):** ~62
+**Linhas de código escritas na sessão (estimativa):** 62
 
 ### Recursos consultados:
 - Documentação da biblioteca `ncurses`.
@@ -67,9 +67,30 @@
 **Próximo passo planeado:**
 - Impedir que o carro saia da pista, verificando a posição para a qual pretende mover-se corresponde a uma posição válida da pista.
 
-**Linhas de código escritas hoje (estimativa):** ~48
+**Linhas de código escritas na sessão (estimativa):** 48
 
 ### Recursos consultados:
 - Documentação da biblioteca `ncurses`.
 - Documentação de `keypad()`e das constantes `KEY_UP`, `KEY_DOWN`, `KEY_LEFT`e `KEY_RIGHT`.
 - Documentação de `getch()` para leitura das teclas.
+
+## Sessão 4 - 21/08/2026 - 10:30 - 12:15
+
+**Funcionalidades implementadas:**
+- Implementada a deteção da pista, impedindo o carro de atravessar as zonas fora da pista.
+- Adicionada a verificação dos limites de matriz para evitar acessos fora do seus limites.
+- Implementada uma tecla de saída (`Q/q`) para terminar o jogo corretamente.
+
+**Maior dificuldade:**
+- Fazer o carro verificar a posição seguintes antes de se mover e resolver o problema causado pelo acesso a posições e fora da matriz.
+- Também foi necessário implementar uma forma controlada de terminar o programa, uma vez que o `while` mantinha o jogo em execução.
+
+**Como resolvi:**
+- Foram calculados as novas coordenadas do carro antes de alterar a sua posição.
+- A posição foi válida através da matriz da pista, permitindo o movimento apenas sobre `#`ou `=`.
+- Foi também adicionada uma verificação dos limites da matriz e uma condição para sair do ciclo através da tecla `Q/q`.
+
+**Próximo passo planeado:**
+- Implementar o sistema de voltas e a linha de partida/chegada.
+
+**Linhas de código escritas na sessão (estimativa):** 38
