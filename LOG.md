@@ -117,4 +117,34 @@
 **Próximo passo planeado:** 
 - Implementar um segundo checkpoint, aproximadamente na posição `(4,10)`, para tornar a validação da volta mais robusta.
 
-- **Linhas de código escritas na sessão (estimativa):** 68
+**Linhas de código escritas na sessão (estimativa):** 68
+
+## Sessão 6 - 22/08/2026 - 21:00 - 23:00
+
+**Funcionalidades implementadas:**
+- Implementação dos restantes checkpoints para validar o percurso da corrida e impedir que as voltas fossem contabilizadas sem o carro completar o circuito.
+- Os checkpoints ficaram definidos pela ordem do percurso: `(6,0)`, `(0,5)`e `(4,10)`.
+- Implementado também o sistema de deteção do final da corrida após 3 voltas.
+
+**Maior dificuldade:**
+- A ordem inicial dos checkpoints não correspondia ao percurso real da pista, fazendo com que o carro nunca conseguisse completar uma volta.
+- Foi necessário analisar o percurso e reorganizar os checkpoints.
+- Também houve problemas relacionados com apresentação da mensagem de fim de corrida através do `ncurses`.
+
+**Como resolvi:**
+- Os checkpoints passaram a funcionar como estados sequenciais `(0 → 1 → 2 → 3)`, sendo necessário passar por cada um na ordem correta antes de a volta ser contabilizada. 
+- Foi criada a variável race_finished, que é ativada quando o contador chega às 3 voltas. 
+- A mensagem de fim da corrida passou a ser apresentada antes de o programa terminar.
+
+**Testes realizados:** 
+- Confirmado que as três voltas são contabilizadas corretamente apenas quando os três checkpoints são percorridos pela ordem definida.
+- Confirmado também que, após a terceira volta, a corrida termina e é apresentada a mensagem de finalização.
+
+**Outros problemas resolvidos:**
+- Foi corrigido um problema de configuração do ambiente de desenvolvimento relacionado com o reconhecimento do `ncurses`. 
+- Foram também analisadas questões relacionadas com `setlocale`, `ncursesw` e caracteres Unicode na tentativa de apresentar o emoji de bandeira na mensagem final.
+
+**Próximo passo planeado:** 
+- Continuar o desenvolvimento das mecânicas da corrida, nomeadamente a implementação da velocidade do carro.
+
+**Linhas de código escritas na sessão (estimativa):** 55

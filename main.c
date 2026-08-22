@@ -2,10 +2,17 @@
 #include "track.h"
 #include "car.h"
 #include "game.h"
+#include <locale.h>
 
 int main(void)
 {
     int key;
+
+    setlocale(LC_ALL, "");
+    // Diz ao C, para usar as definições de idioma/codificação que o sistema operativo está a usar
+    // setlocale() -> configura o locale do programa
+    // LC_ALL -> aplica a configuração a todas as categorias do locale
+    // "" -> pede ao programa para usar o locale definido pelo ambiente/sistema operativo
 
     initscr(); // Inicializa o ncurses
     keypad(stdscr, TRUE);
@@ -18,7 +25,6 @@ int main(void)
     {
         clear();
         // Limpa o ecrã antes de desenharmos novamente
-
         draw_track();
         draw_car();
         draw_game();
@@ -35,6 +41,13 @@ int main(void)
 
         move_car(key);
         update_lap();
+
+        if (race_finished == 1)
+        {
+            draw_game();
+            getch();
+            break;
+        }
         refresh();
     }
     

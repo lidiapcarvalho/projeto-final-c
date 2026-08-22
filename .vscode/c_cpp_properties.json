@@ -5,7 +5,8 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "C:\\msys64\\ucrt64\\include",
-                "C:\\msys64\\ucrt64\\include\\ncurses"
+                "C:\\msys64\\ucrt64\\include\\ncurses",
+                "C:\\msys64\\ucrt64\\include\\ncursesw"
             ],
             "defines": [
                 "_DEBUG",
