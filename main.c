@@ -17,6 +17,7 @@ int main(void)
     initscr(); // Inicializa o ncurses
     keypad(stdscr, TRUE);
     // Permite ao ncurses reconhecer corretamente as teclas especiais, como as setas
+    timeout(100);
 
     init_car();
     init_game();
@@ -29,17 +30,40 @@ int main(void)
         draw_car();
         draw_game();
 
+        timeout(get_speed_delay());
+
         key = getch();
         // Faz o programa esperar por uma tecla.
         // Sem isto, o programa poderia desenhar a pista e terminar imediatamente
 
-        // Comando de saída
         if (key == 'q' || key == 'Q')
+        {
+            change_speed(1);
+        }
+        else if (key == 'e' || key == 'E')
+        {
+            change_speed(-1);
+        }
+        else if (key == '+')
+        {
+            change_speed(1);
+        }
+        else if (key == '-')
+        {
+            change_speed(-1);
+        }
+
+        // Comando de saída
+        if (key == 27) // Esc
         {
             break;
         }
 
-        move_car(key);
+        if (key != ERR)
+        // ERR -> constante do ncurses que significa, neste contexto, "não foi recebida nenhuma tecla"
+        {
+            move_car(key);
+        }
         update_lap();
 
         if (race_finished == 1)

@@ -148,3 +148,43 @@
 - Continuar o desenvolvimento das mecânicas da corrida, nomeadamente a implementação da velocidade do carro.
 
 **Linhas de código escritas na sessão (estimativa):** 55
+
+## Sessão 7 - 23/08/2026 - 17:00 - 19:15
+
+**Funcionalidades implementadas:**
+- Implementação da variável `speed`, com valores de 1 a 3, correspondentes a 100, 200 e 300 km/h.
+- Criação da função `change_speed()` com limites mínimo e máximo.
+- Criação da função `get_speed_delay()` para relacionar a velocidade com o intervalo de tempo.
+- Implementação dos controlos de velocidade:
+    -> Jogador 1: `Q` para acelerar e `E` para travar;
+    -> Jogador 1: `+` para acelerar e `-` para travar.
+- Implementação das teclas `W/A/S/D`como alternativa às setas para controlar a direção.
+- Alteração da tecla de saída de `Q/q` para `ESC`.
+- Introdução do `timeout()` para permitir que o jogo continue a executar sem ficar bloquado à espera de uma tecla.
+- Criação da variável `direction` para guardar a direção atual do carro.
+- Inicialização da direção com `KEY_UP`.
+
+**Maior dificuldade:**
+- Encontrar uma forma adequada de implementar os controlos de velocidade sem os misturar com as teclas de direção.
+- Perceber o funcionamento do `timeout()` e do `ERR` devolvido pelo `getch()`.
+- Encontrar teclas adequadas para o segundo jogador, uma vez que `Shift` e `Ctrl` não funcionaram como esperado no `ncurses`.
+
+**Como resolvi:**
+- Separei os controlos de direção dos controlos de velocidade.
+- Mantive `W/A/S/D` e as setas exclusivamente para a direção.
+- Criei limites para impedir que a velocidade ultrapasse 300 km/h ou deças abaixo de 100 kmh.
+- Usei `timeout()` para recuperar o jogo para funcionar continuamente, mesmo sem entrada do jogador.
+- Criei `direction` para preparar a implementação do movimento automático.
+
+**Testes realizados:**
+- Teste das teclas `W/A/S/D` e das setas.
+- Teste da acelaração e travagem com `Q/E` e `+/-`.
+- Verificação dos limites de velocidade entre 100 a 300 km/h.
+- Teste de `ESC` para sair do jogo.
+- Compilação realizada sem erros.
+
+**Próximo passo planeado:**
+- Implementar o movimento automático do carro com base na direção e na velocidade.
+- Fazer com que a velocidade tenha impacto real na movimentação do carro.
+
+**Linhas de código escritas na sessão (estimativa):** 74
