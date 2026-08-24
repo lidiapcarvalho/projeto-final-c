@@ -63,8 +63,6 @@ void draw_game(void)
     if (race_finished == 1)
     {
         mvprintw(11, 0, "Corrida Terminada! 🏁");
-        // mvaddstr() -> trabalha com wide caracters
-        // mvprintw() -> trabalha com strings normais
     }
     else
     {

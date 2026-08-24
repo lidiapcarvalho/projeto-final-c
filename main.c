@@ -4,21 +4,16 @@
 #include "game.h"
 #include <locale.h>
 #include <time.h>
-// Ferramentas relacionadas com tempo
 
 int main(void)
 {
     int key;
 
     setlocale(LC_ALL, "");
-    // Diz ao C, para usar as definições de idioma/codificação que o sistema operativo está a usar
-    // setlocale() -> configura o locale do programa
-    // LC_ALL -> aplica a configuração a todas as categorias do locale
-    // "" -> pede ao programa para usar o locale definido pelo ambiente/sistema operativo
 
     initscr(); // Inicializa o ncurses
     keypad(stdscr, TRUE);
-    // Permite ao ncurses reconhecer corretamente as teclas especiais, como as setas
+
     nodelay(stdscr, TRUE);
     timeout(100);
 
@@ -26,8 +21,6 @@ int main(void)
     init_game();
 
     clock_t last_move = clock();
-    // clock_t -> tipo de dado usado para guardar um valor produzido por clock()
-    // clock() -> devolve um valor que representa tempo de CPU utilizado pelo programa desde que começou
     
     while(1)
     {
@@ -35,7 +28,7 @@ int main(void)
         double elapsed_time = (double)(current_time - last_move) / CLOCKS_PER_SEC * 1000;
 
         // clear(); // temporário
-        // Limpa o ecrã antes de desenharmos novamente
+
         draw_track();
         draw_car();
         draw_game();
@@ -44,8 +37,6 @@ int main(void)
         mvprintw(14, 0, "Delay: %d ms", get_speed_delay());
 
         key = getch();
-        // Faz o programa esperar por uma tecla.
-        // Sem isto, o programa poderia desenhar a pista e terminar imediatamente
 
         if (key == 'q' || key == 'Q')
         {
@@ -71,7 +62,6 @@ int main(void)
         }
 
         if (key != ERR)
-        // ERR -> constante do ncurses que significa, neste contexto, "não foi recebida nenhuma tecla"
         {
             change_direction(key);
         }
@@ -93,6 +83,5 @@ int main(void)
     } // Fim do WHILE
     
     endwin();
-    // Sai do modo ncurses e devolve o terminal ao estado normal
     return 0;
 }

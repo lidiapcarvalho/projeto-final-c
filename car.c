@@ -93,8 +93,6 @@ void change_direction(int key)
 {
     // Direção do carro (já com possível adaptação para multiplayer)
     if (key == KEY_UP || key == 'w' || key == 'W')
-    // 'w' -> um carácter - char
-    // "w" -> uma string - char*
     {
         direction = KEY_UP;
     }
