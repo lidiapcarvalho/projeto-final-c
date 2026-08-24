@@ -38,31 +38,29 @@ void draw_car()
     mvprintw(12, 0, "Velocidade: %d00 km/h", speed);
 }
 
-void move_car(int key)
+void move_car(void)
 {
     int new_row = car_row;
     int new_col =  car_col;
 
-    // Direção do carro (já com possível adaptação para multiplayer)
-    if (key == KEY_UP || key == 'w' || key == 'W')
-    // 'w' -> um carácter - char
-    // "w" -> uma string - char*
+    if (direction == KEY_UP)
     {
         new_row--;
     }
-    else if (key == KEY_DOWN || key == 's' || key == 'S')
+    else if (direction == KEY_DOWN)
     {
         new_row++;
     }
-    else if (key == KEY_LEFT || key == 'a' || key == 'A')
+    else if (direction == KEY_LEFT)
     {
         new_col--;
     }
-    else if (key == KEY_RIGHT || key == 'd' || key == 'D')
+    else if (direction == KEY_RIGHT)
     {
         new_col++;
     }
 
+    // mantemos
     if (new_row >= 0 && new_row < 9 &&
         new_col >= 0 && new_col < 14)
     {
@@ -88,5 +86,28 @@ int get_speed_delay(void)
     else
     {
         return 100;
+    }
+}
+
+void change_direction(int key)
+{
+    // Direção do carro (já com possível adaptação para multiplayer)
+    if (key == KEY_UP || key == 'w' || key == 'W')
+    // 'w' -> um carácter - char
+    // "w" -> uma string - char*
+    {
+        direction = KEY_UP;
+    }
+    else if (key == KEY_DOWN || key == 's' || key == 'S')
+    {
+        direction = KEY_DOWN;
+    }
+    else if (key == KEY_LEFT || key == 'a' || key == 'A')
+    {
+        direction = KEY_LEFT;
+    }
+    else if (key == KEY_RIGHT || key == 'd' || key == 'D')
+    {
+        direction = KEY_RIGHT;
     }
 }

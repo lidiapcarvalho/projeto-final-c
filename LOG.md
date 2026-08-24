@@ -188,3 +188,42 @@
 - Fazer com que a velocidade tenha impacto real na movimentação do carro.
 
 **Linhas de código escritas na sessão (estimativa):** 74
+
+## Sessão 8 - 24/08/2026 - 11:00 - 16:00
+
+**Funcionalidades implementadas:**
+- Separação entre direção e movimento do carro.
+- Implementação de `change_direction()` para alterar a direção através das teclas.
+- Implementação do **movimento automático** do carro. O carro passou a continuar a deslocar-se na direção escolhida sem ser necessário manter a tecla pressionada.
+- Ligação da velocidade ao intervalo entre movimentos através de `get_speed_delay()`.
+- Introdução da medição de tempo com `clock()`, `clock_t`, `CLOCKS_PER_SEC` e `elapsed_time`.
+- Teste dos diferentes intervalos associados às velocidades de 100, 200 e 300 km/h.
+- Confirmado que `get_speed_delay()` devolve corretamente 300 ms, 200 ms e 100 ms respetivamente.
+
+**Maior dificuldade:**
+- Fazer o movimento automático funcionar independentemente da pressão das teclas.
+- Compreender a diferença entre a leitura das teclas e o movimento do carro.
+- Resolver a medição do tempo para controlar corretamente a velocidade.
+- Identificar o motivo pelo qual o terminal apresentava um efeito de "tremor".
+
+**Como resolvi:**
+- Separei a alteração da direção (`change_direction()`) do movimento (`move_car()`).
+- Passei a controlar o movimento através do tempo decorrido.
+- Utilizei temporariamente `clock()` para estudar e testar a lógico de temporização.
+- Comentei temporariamente `clear()` e confirmei que este era responsável pelo efeito visual de tremor.
+- Testei os valores devolvidos por `get_speed_delay()` para confirmar que a lógica da velocidade estava correta.
+
+**Testes realizados:**
+- Movimento automático sem pressionar continuamente as teclas.
+- Mudança de direção durante o movimento automático.
+- Velocidades de 100, 200 e 300 km/h.
+- Verificação dos valores de `get_speed_delay()`.
+- Teste do `elapsed_time`.
+- Teste com `clear()` comentado para identificar a origem do tremor do terminal.
+
+**Próximo passo planeado:**
+- Substituir `clock()` por uma solução de medição de tempo real decorrido, mantendo a compatibilidade entre diferentes sistemas operativos.
+- Depois corrigir o redesenho do terminal para eliminar o tremor sem deixar o `clear()` permanentemente desativado.
+- Continuar o desenvolvimento da mecânica de velocidade e movimento automático.
+
+**Linhas de código escritas na sessão (estimativa):** 53

@@ -3,6 +3,8 @@
 #include "car.h"
 #include "game.h"
 #include <locale.h>
+#include <time.h>
+// Ferramentas relacionadas com tempo
 
 int main(void)
 {
@@ -17,20 +19,29 @@ int main(void)
     initscr(); // Inicializa o ncurses
     keypad(stdscr, TRUE);
     // Permite ao ncurses reconhecer corretamente as teclas especiais, como as setas
+    nodelay(stdscr, TRUE);
     timeout(100);
 
     init_car();
     init_game();
 
+    clock_t last_move = clock();
+    // clock_t -> tipo de dado usado para guardar um valor produzido por clock()
+    // clock() -> devolve um valor que representa tempo de CPU utilizado pelo programa desde que começou
+    
     while(1)
     {
-        clear();
+        clock_t current_time = clock();
+        double elapsed_time = (double)(current_time - last_move) / CLOCKS_PER_SEC * 1000;
+
+        // clear(); // temporário
         // Limpa o ecrã antes de desenharmos novamente
         draw_track();
         draw_car();
         draw_game();
 
-        timeout(get_speed_delay());
+        mvprintw(13, 0, "Tempo: %.2f ms", elapsed_time);
+        mvprintw(14, 0, "Delay: %d ms", get_speed_delay());
 
         key = getch();
         // Faz o programa esperar por uma tecla.
@@ -62,9 +73,15 @@ int main(void)
         if (key != ERR)
         // ERR -> constante do ncurses que significa, neste contexto, "não foi recebida nenhuma tecla"
         {
-            move_car(key);
+            change_direction(key);
         }
-        update_lap();
+        
+        if (elapsed_time >= get_speed_delay())
+        {
+            move_car();
+            update_lap();
+            last_move = current_time;            
+        }
 
         if (race_finished == 1)
         {
@@ -73,7 +90,7 @@ int main(void)
             break;
         }
         refresh();
-    }
+    } // Fim do WHILE
     
     endwin();
     // Sai do modo ncurses e devolve o terminal ao estado normal

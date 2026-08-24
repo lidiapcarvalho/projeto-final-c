@@ -9,7 +9,8 @@ extern int direction;
 void init_car(void);
 void change_speed(int value);
 void draw_car(void);
-void move_car(int key);
+void move_car(void);
 int get_speed_delay(void);
+void change_direction(int key);
 
 #endif
