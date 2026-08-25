@@ -13,12 +13,19 @@
 - `LC_ALL` -> aplica a configuração a todas as categorias do locale
 - `""` -> pede ao programa para usar o locale definido pelo ambiente/sistema operativo
 
+[`initscr();`](main.c#L14)
+- Inicializa o ncurses
+
 [`keypad(stdscr, TRUE);`](main.c#L15)
 - Permite ao ncurses reconhecer corretamente teclas especiais, como as setas
 
-[`clock_t last_move = clock();`](main.c#L23)
+[`clock_t last_move = clock();`](main.c#L23) -> usada temporáriamente
 - `clock_t` -> tipo de dado usado para guardar um valor produzido por clock()
 - `clock()` -> devolve um valor que representa tempo de CPU utilizado pelo programa desde que começou
+
+Diferenças comparativamente a double last_move = get_time_ms();
+- clock() -> dependíamos do relógio do CPU
+- get_time_ms() -> usamos o nosso temporizador baseado em tempo monotónico
 
 [`clear();`](main.c#L30)
 - Limpa o ecrã antes de desenharmos novamente

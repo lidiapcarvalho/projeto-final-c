@@ -9,6 +9,7 @@ int previous_col;
 
 int checkpoint;
 
+int race_started = 0;
 int race_finished;
 
 void init_game(void)
@@ -17,6 +18,16 @@ void init_game(void)
     crossed_finish = 1;
     checkpoint = 0;
     race_finished = 0;
+}
+
+void start_race(void)
+{
+    clear();
+
+    mvprintw(5, 10, "PREPARE-SE!");
+    refresh();
+
+    napms(1000);
 }
 
 void update_lap(void)

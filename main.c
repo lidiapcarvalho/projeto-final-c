@@ -4,6 +4,7 @@
 #include "game.h"
 #include <locale.h>
 #include <time.h>
+#include "timer.h"
 
 int main(void)
 {
@@ -11,7 +12,7 @@ int main(void)
 
     setlocale(LC_ALL, "");
 
-    initscr(); // Inicializa o ncurses
+    initscr();
     keypad(stdscr, TRUE);
 
     nodelay(stdscr, TRUE);
@@ -20,12 +21,19 @@ int main(void)
     init_car();
     init_game();
 
-    clock_t last_move = clock();
+    double last_move = get_time_ms();
+    double race_start = 0;
     
     while(1)
     {
-        clock_t current_time = clock();
-        double elapsed_time = (double)(current_time - last_move) / CLOCKS_PER_SEC * 1000;
+        double current_time = get_time_ms();
+        double elapsed_time = current_time - last_move;
+        double race_time = 0;
+
+        if (race_started == 1)
+        {
+            race_time = current_time - race_start;
+        }
 
         // clear(); // temporário
 
@@ -33,11 +41,22 @@ int main(void)
         draw_car();
         draw_game();
 
-        mvprintw(13, 0, "Tempo: %.2f ms", elapsed_time);
+        mvprintw(13, 0, "Tempo: %.2f ms", race_time / 1000.0);
         mvprintw(14, 0, "Delay: %d ms", get_speed_delay());
 
         key = getch();
 
+        // Iniciar corrida
+        if (race_started == 0 && key == '\n')
+        {
+            start_race();
+
+            race_started = 1;
+            race_start = get_time_ms();
+            last_move = race_start;
+        }
+
+        // Acelerar e travar
         if (key == 'q' || key == 'Q')
         {
             change_speed(1);
@@ -66,7 +85,7 @@ int main(void)
             change_direction(key);
         }
         
-        if (elapsed_time >= get_speed_delay())
+        if (race_started == 1 && elapsed_time >= get_speed_delay())
         {
             move_car();
             update_lap();

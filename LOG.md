@@ -257,3 +257,48 @@ Confirmei que `timer.c` e `teste.c` compilam individualmente com `gcc -c`.
 - Substituir a utilização de `clock()` no `main.c` pela nova função de medição de tempo.
 
 **Linhas de código escritas na sessão (estimativa):** 22
+
+## Sessão 9 - 24/08/2026 - 15:30 - 19:30
+
+**Funcionalidades implementadas:**
+- Integração dos ficheiros `timer.c` e `timer.h` no `Makefile`.
+- Substituição do sistema baseado em `clock()` por `get_time_ms()`.
+- Implementação cronómetro da corrida em segundos.
+- Criação da variável `race_started` para controlar o estado da corrida.
+- Definição da tecla **Enter** como início da corrida.
+- Impedimento do movimento do carro antes do início da corrida.
+- Criação da função `start_race()` para preparar a sequência de partida.
+- Implementação inicial da mensagem `PREPARE-SE!`.
+- Testes das velocidades de 100, 200 e 300 km/h.
+- Testes das voltas e do funcionamento do croómetro.
+
+**Maior dificuldade:**
+- Resolver o erro `Permission denied` ao tentar executar os progrmas de teste.
+- Distinguir o tempo decorrido entre movimentos (`elapsed_time`) do tempo total da corrida (`race_time`).
+- Integrar o novo sistema de temporização no `main.c` sem interferir com a lógica de movimento.
+
+**Como resolvi:**
+- Foi identificado que o `Permission denied` era causado pelo AVG, que detetava os executáveis de teste como uma ameaça heurística e os movia para a quarentena.
+- Foi criado o módulo `timer.c`/`timer.h`, permitindo centralizar a obtenção do tempo através de `get_time_ms()`.
+- Foram utilizados temporizadores independentes para controlar o intervalo de movimento e a duração total da corrida.
+- Foi criado o estado `race_started`, permitindo separar o período anterior à partida da corrida propriamente dita.
+
+**Observações:**
+- A velocidade influencia corretamente a frequência do movimento.
+- O carro permanece parado antes de carregar em Enter.
+- O cronómetro começa no momento da partida.
+- As voltas continuam a ser contabilizadas corretamente.
+- O terminal permanece estável durante a execução.
+- Ficou iniciada a implementação de uma sequência de partida inspirada na F1, a desenvolver na próxima sessão.
+
+**Próximo passo planeado:**
+- Implementação da sequência de partida estilo F1.
+- Correção e revisão da apresentação do tempo da corrida.
+- Revisão do comportamento no final da corrida.
+- Testes gerais do funcionamento do jogo.
+- Implementação do menu principal e das instruções.
+- Revisão da qualidade e organização do código.
+- Revisão e conclusão do `apontamentos.md`, incluindo a verificação das referências aos ficheiros e linhas de código.
+- Atualização final da documentação e realização dos testes finais.
+
+**Linhas de código escritas na sessão (estimativa):** 53
