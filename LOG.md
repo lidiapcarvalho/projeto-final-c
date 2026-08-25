@@ -227,3 +227,33 @@
 - Continuar o desenvolvimento da mecânica de velocidade e movimento automático.
 
 **Linhas de código escritas na sessão (estimativa):** 53
+
+## Sessão 9 - 24/08/2026 - 17:15 - 19:15
+
+**Funcionalidades implementadas:**
+- Investigação da utilização de `clock()` para controlo do tempo do movimento automático.
+- Teste de `clock_gettime()` com `CLOCK_MONOTONIC`.
+- Criação de `timer.h` e `timer.c` para separar a medição do tempo da lógica principal do jogo.
+- Criação de um ficheiro de teste para verificar a nova função `get_time_ms()`.
+
+**Maior dificuldade:**
+- Perceber que `clock()` não era a solução mais adequada para medir tempo real decorrido.
+- Resolver problemas de compilação e criação do executável no ambiente Windows/MSYS2.
+
+**Como resolvi:**
+- Testei `clock_gettime()` e confirmei que o ambiente suporta `CLOCK_MONOTONIC`.
+Separei a funcionalidade de medição do tempo num módulo próprio.
+Confirmei que `timer.c` e `teste.c` compilam individualmente com `gcc -c`.
+
+**Testes realizados:**
+- Teste de `clock_gettime()` com `CLOCK_MONOTONIC`.
+- Verificação dos valores de `get_speed_delay()` para 100, 200 e 300 km/h.
+- Compilação de `timer.c` e `teste.c` em ficheiros objeto.
+- Tentativa de criação do executável, que resultou em `Permission denied`.
+
+**Próximo passo planeado:**
+- Resolver o problema de criação do executável no MSYS2.
+- Testar `get_time_ms()`.
+- Substituir a utilização de `clock()` no `main.c` pela nova função de medição de tempo.
+
+**Linhas de código escritas na sessão (estimativa):** 22

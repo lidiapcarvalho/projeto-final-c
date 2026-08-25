@@ -49,3 +49,8 @@
 
 [`extern char track[9][14];`](track.h#L4)
 - `extern` -> track existe, mas está definido em outro ficheiro
+
+[`timer.h`](timer.h)
+
+[`double get_time_ms(void);`](timer.h#L4)
+- `double` -> tipo numérico utilizado para representar números com casas decimais e maior precisão do que `float`
