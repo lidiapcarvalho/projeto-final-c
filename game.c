@@ -24,10 +24,57 @@ void start_race(void)
 {
     clear();
 
-    mvprintw(5, 10, "PREPARE-SE!");
-    refresh();
+    mvprintw(0, 10, "PREPARE-SE!");
 
+    attron(COLOR_PAIR(2) | A_BOLD);
+    // A_BOLD -> torna a apresentação mais intensa
+    mvprintw(1, 10, "[●] [●] [●] [●] [●]");
+    attroff(COLOR_PAIR(2) | A_BOLD);
+
+    refresh();
     napms(1000);
+
+    attron(COLOR_PAIR(1) | A_BOLD);
+    mvprintw(1, 10, "[●]");
+    attroff(COLOR_PAIR(1) | A_BOLD);
+
+    refresh();
+    napms(1000);
+
+    attron(COLOR_PAIR(1) | A_BOLD);
+    mvprintw(1, 14, "[●]");
+    attroff(COLOR_PAIR(1) | A_BOLD);
+
+    refresh();
+    napms(1000);
+
+    attron(COLOR_PAIR(1) | A_BOLD);
+    mvprintw(1, 18, "[●]");
+    attroff(COLOR_PAIR(1) | A_BOLD);
+
+    refresh();
+    napms(1000);
+    
+    attron(COLOR_PAIR(1) | A_BOLD);
+    mvprintw(1, 22, "[●]");
+    attroff(COLOR_PAIR(1) | A_BOLD);
+
+    refresh();
+    napms(1000);
+
+    attron(COLOR_PAIR(1) | A_BOLD);
+    mvprintw(1, 26, "[●]");
+    attroff(COLOR_PAIR(1) | A_BOLD);
+    
+    refresh();
+    napms(1000);
+
+    attron(COLOR_PAIR(2));
+    mvprintw(1, 10, "[●] [●] [●] [●] [●]");
+    attroff(COLOR_PAIR(2));
+
+    refresh();
+    napms(500);
 }
 
 void update_lap(void)
@@ -73,10 +120,10 @@ void draw_game(void)
 {
     if (race_finished == 1)
     {
-        mvprintw(11, 0, "Corrida Terminada! 🏁");
+        mvprintw(14, 0, "Corrida Terminada! 🏁");
     }
     else
     {
-        mvprintw(11, 0, "Volta: %d/3", lap);
+        mvprintw(14, 0, "Volta: %d/3", lap);
     }
 }

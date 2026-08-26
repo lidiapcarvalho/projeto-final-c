@@ -19,7 +19,7 @@ void draw_track(void)
     // Matriz da pista
     for (int i = 0; i < 9; i++)
     {
-        mvprintw(i, 0, "%s", track[i]);
+        mvprintw(TRACK_START_ROW + i, 0, "%s", track[i]);
     }
     // Percorrer matriz
 

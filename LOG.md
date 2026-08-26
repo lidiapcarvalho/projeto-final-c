@@ -258,7 +258,7 @@ Confirmei que `timer.c` e `teste.c` compilam individualmente com `gcc -c`.
 
 **Linhas de código escritas na sessão (estimativa):** 22
 
-## Sessão 9 - 24/08/2026 - 15:30 - 19:30
+## Sessão 10 - 25/08/2026 - 15:30 - 19:30
 
 **Funcionalidades implementadas:**
 - Integração dos ficheiros `timer.c` e `timer.h` no `Makefile`.
@@ -302,3 +302,39 @@ Confirmei que `timer.c` e `teste.c` compilam individualmente com `gcc -c`.
 - Atualização final da documentação e realização dos testes finais.
 
 **Linhas de código escritas na sessão (estimativa):** 53
+
+## Sessão 11 - 26/08/2026 - 15:25 - 20:00
+
+**Funcionalidades implementadas:**
+- Sistema de cores com `ncurses`.
+- Criação de luzes de partida com cinco posições, onde acendem progressivamente a vermelho e apagam-se simultaneamente ao iniciar a corrida.
+- Cronómetro sincronizado com o apagão das luzes.
+- Circuito e informações da corrida deixaram de aparecer antes da partida.
+- Remoção do `Delay` que estava a ser utilizado como informação de debug.
+- Reorganização da posição visual da pista.
+- Alinhamento do carro com a nova posição da pista.
+- Separação entre as coordenadas da matriz da pista e as coordenadas visuais do terminal.
+
+**Maior dificuldade:**
+- Organizar os diferentes elementos no terminal sem que as luzes, pista, carro e informações se sobrepusessem.
+- O carro passou a utilizar esse mesmo deslocamento apenas no momento de ser desenhado.
+- As coordenadas internas da matriz permaneceram inalteradas, preservando a lógica de colisão e movimento.
+
+**Teste realizados:**
+- Compilação sem erros.
+- Sistema de cores funcional.
+- Sequência de cinco luzes e apagão das mesmas funcional.
+- Cronómetro inícia no momento correto.
+- Circuito só aparece depois da preparação.
+- Carro mantém-se alinhado com a pista após a alteração de posição.
+- Interface visual melhorada.
+
+**Próximo passo planeado:**
+- Reorganizar definitivmanete o `start_race()` para colocar `PREPARE-SE!` e as luzes acima da pista.
+- Continuar polimento da interface.
+- Rever a apresentação de fim de corrida.
+- Eventualmente começar o **menu**.
+- Mais à frente, se o tempo permitir, avaliar o histórico de voltas com as cores de conometragem F1.
+- **Verificas as referências** do `apontamentos.md` antes da conclusão do projeto.
+
+**Linhas de código escritas na sessão (estimativa):** 79

@@ -13,6 +13,13 @@ int main(void)
     setlocale(LC_ALL, "");
 
     initscr();
+    start_color(); // sistema de cores
+
+    init_pair(1, COLOR_RED, COLOR_BLACK);
+    // par de cor nº 1, texto vermelho, fundo preto
+    init_pair(2, COLOR_WHITE, COLOR_BLACK);
+
+
     keypad(stdscr, TRUE);
 
     nodelay(stdscr, TRUE);
@@ -37,12 +44,14 @@ int main(void)
 
         // clear(); // temporário
 
-        draw_track();
-        draw_car();
-        draw_game();
+        if (race_started == 1)
+        {
+            draw_track();
+            draw_car();
+            draw_game();
 
-        mvprintw(13, 0, "Tempo: %.2f ms", race_time / 1000.0);
-        mvprintw(14, 0, "Delay: %d ms", get_speed_delay());
+            mvprintw(16, 0, "Tempo: %.2f s", race_time / 1000.0);
+        }
 
         key = getch();
 
