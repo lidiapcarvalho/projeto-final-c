@@ -20,11 +20,7 @@ void draw_track(void)
     for (int i = 0; i < 9; i++)
     {
         mvprintw(TRACK_START_ROW + i, 0, "%s", track[i]);
-    }
-    // Percorrer matriz
-
-    // Desenhar cada carácter da pista
-    
+    }    
 }
 
 

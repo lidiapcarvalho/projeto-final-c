@@ -18,6 +18,7 @@ void init_game(void)
     crossed_finish = 1;
     checkpoint = 0;
     race_finished = 0;
+    race_started = 0;
 }
 
 void start_race(void)
@@ -26,6 +27,7 @@ void start_race(void)
 
     mvprintw(0, 10, "PREPARE-SE!");
 
+    // Cincos luzes apagadas
     attron(COLOR_PAIR(2) | A_BOLD);
     // A_BOLD -> torna a apresentação mais intensa
     mvprintw(1, 10, "[●] [●] [●] [●] [●]");
@@ -34,44 +36,20 @@ void start_race(void)
     refresh();
     napms(1000);
 
-    attron(COLOR_PAIR(1) | A_BOLD);
-    mvprintw(1, 10, "[●]");
-    attroff(COLOR_PAIR(1) | A_BOLD);
+    // Acende as luzes uma a uma
+    for (int i = 0; i < 5; i++)
+    {
+        attron(COLOR_PAIR(1) | A_BOLD);
+        mvprintw(1, 10 + (i * 4), "[●]");
+        attroff(COLOR_PAIR(1) | A_BOLD);
 
-    refresh();
-    napms(1000);
+        refresh();
+        napms(1000);
+    }
 
-    attron(COLOR_PAIR(1) | A_BOLD);
-    mvprintw(1, 14, "[●]");
-    attroff(COLOR_PAIR(1) | A_BOLD);
-
-    refresh();
-    napms(1000);
-
-    attron(COLOR_PAIR(1) | A_BOLD);
-    mvprintw(1, 18, "[●]");
-    attroff(COLOR_PAIR(1) | A_BOLD);
-
-    refresh();
-    napms(1000);
-    
-    attron(COLOR_PAIR(1) | A_BOLD);
-    mvprintw(1, 22, "[●]");
-    attroff(COLOR_PAIR(1) | A_BOLD);
-
-    refresh();
-    napms(1000);
-
-    attron(COLOR_PAIR(1) | A_BOLD);
-    mvprintw(1, 26, "[●]");
-    attroff(COLOR_PAIR(1) | A_BOLD);
-    
-    refresh();
-    napms(1000);
-
-    attron(COLOR_PAIR(2));
-    mvprintw(1, 10, "[●] [●] [●] [●] [●]");
-    attroff(COLOR_PAIR(2));
+    // Apaga as luzes
+    mvprintw(0, 10, "                     ");
+    mvprintw(1, 10, "                     ");
 
     refresh();
     napms(500);
@@ -120,10 +98,21 @@ void draw_game(void)
 {
     if (race_finished == 1)
     {
-        mvprintw(14, 0, "Corrida Terminada! 🏁");
+        mvprintw(12, 0, "Corrida Terminada! 🏁");
     }
     else
     {
-        mvprintw(14, 0, "Volta: %d/3", lap);
+        mvprintw(12, 0, "Volta: %d/3", lap);
     }
+}
+
+// Ecrã de resultados - fim de corrida
+void draw_results(double race_time)
+{
+    clear();
+    mvprintw(3, 10, "CORRIDA TERMINADA!");
+    mvprintw(5, 10, "Voltas: %d/3", lap);
+    mvprintw(6, 10, "Tempo total: %.2f s", race_time / 1000.0);
+
+    refresh();
 }

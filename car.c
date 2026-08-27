@@ -35,7 +35,7 @@ void draw_car()
 {
     mvprintw(TRACK_START_ROW + car_row, car_col, "@");
 
-    mvprintw(15, 0, "Velocidade: %d00 km/h", speed);
+    mvprintw(13, 0, "Velocidade: %d00 km/h", speed);
 }
 
 void move_car(void)

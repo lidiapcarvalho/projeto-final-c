@@ -338,3 +338,48 @@ Confirmei que `timer.c` e `teste.c` compilam individualmente com `gcc -c`.
 - **Verificas as referências** do `apontamentos.md` antes da conclusão do projeto.
 
 **Linhas de código escritas na sessão (estimativa):** 79
+
+## Sessão 12 - 27/08/2026 - 15:30 - 19:50
+
+**Funcionalidades implementadas:**
+- Integração do menu principal no fluxo do jogo.
+- Criação de um ciclo principal para permitir voltar ao menu após cada corrida.
+- Possibilidade de iniciar uma nova corrida sem fechar o programa.
+- Implementação do ecrã de resultados no final da corrida, que apresenta o número de voltas e o tempo final.
+- Reinício correto do estada da corrida através de `init_game()` e do cronómetro em cada nova partida.
+- Tratamento do buffer de entrada do `ncurses` com `flushinp()`.
+- Correção da apresentação do menu após o término da corrida.
+- Ajustes no `main.c`, `game.c`, `menu.c`, `menu.h`, `game.h`, `track.c`, `track.h`, `car.c` e `Makefile`.
+- Testes sucessivos da corrida e do regresso ao menu.
+
+**Maior dificuldade:**
+- A principal difucldade foi reorganizar o fluxo do programa sem interferir com a lógica da corrida que já estava funcional.
+- Distinção ente o ciclo principal do programa e do ciclo específico da corrida, permitindo que o jogo passasse de **menu → corrida → resultados → menu**.
+- Também surgir um problema com o `ncurses`: ao regressar ao menu, uma tecla que permanecia no buffer de entrada podia ser intrepretada como uma nova opção. Este problema foi resolvido com `flushinp()` e com a alternância entre `nodelay()` e `timeout()` conforme o contexto.
+- Outra dificuldade foi garantir que o estado da corrida era totalmente reiniciado. A variável `race_started()` permanecia ativa entre partidas, fazendo com que o cronómetro continuasse a contar. A inclusão de `race_started = 0` em `init_game()` resolveu o problema.
+
+**Teste realizados:**
+- Testado o início da corrida através do menu.
+- Testado o abandono da corrida com `ESC`.
+- Testado o regresso ao menu.
+- Testada a opção de sair pelo menu.
+- Testado o reinício de uma nova corrida.
+- Confirmado que o cronómetro reinicia corretamente.
+- Confirmado que o menu deixa de ficar sobreposto ao circuito.
+- Confirmado o funcionamento do ecrã de resultados.
+- Realizadas várias tentativas para testar o sistema de voltas e o cronómetro.
+
+**Recorde 🏆:**
+Durante os testes da sessão foi alcançado um novo melhor tempo: 26,43 segundos.
+
+**Resultado da sessão:**
+- O jogo passou a ter um fluxo mais completo e organizado, deixando de terminar obrigatoriamente após uma corrida. 
+- O jogador pode iniciar uma partida, terminar a corrida, visualizar o resultado e regressar ao menu para jogar novamente.
+
+**Próximo passo planeado:**
+- Implementar o armazenamento do melhor tempo.
+- Criar um histórico de tempos.
+- Avaliar a aplicação das cores de cronometragem inspiradas na Fórmula 1.
+- Melhorar visualmente o ecrã de resultados.
+
+**Linhas de código escritas na sessão (estimativa):** 35
