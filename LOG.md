@@ -424,3 +424,46 @@ Foi implementada a função `draw_history_recursive()`, que percorre os tempos a
 - Implementar a componente visual dos setores e cores.
 
 **Linhas de código escritas na sessão (estimativa):** 50
+
+## Sessão 14 - 28/08/2026 - 12:45 - 21:15
+
+**Funcionalidades implementadas:**
+- Implementação de um sistema de histórico de corridas.
+- Criação do ficheiro `historico.txt` para guardar os tempos das corridas.
+- Registo da data e da hora de cada corrida.
+- Atualização da função `save_race_time()` para guardar os dados da corrida no ficheiro.
+- Criação das estruturas `race_dates[]` e `race_hours[]` para armazenar a data e a hora das corridas.
+- Adaptação da função `load_history()` para carregar os dados do histórico.
+- Atualização da apresentação do histórico para mostrar:
+    - número da corrida;
+    - data;
+    - hora;
+    - tempo da corrida.
+- Implementação de uma função recursiva para apresentar as corridas do histórico.
+- Limitação do histórico em memória a 10 corridas através de `MAX_RACES`.
+- Integração do histórico no menu principal.
+
+**Maior dificuldade:**
+- A principal dificuldade da sessão foi a adaptação do histórico ao novo formato do ficheiro, que passou de guardar apenas o tempo para guardar data, hora e tempo.
+- Durante os testes verificou-se um problema na leitura e apresentação de várias entradas do histórico, apesar de os dados estarem corretamente gravados no `historico.txt`. A situação ficou identificada, mas a correção definitiva ficará para a próxima sessão.
+
+**Testes realizados:**
+- Compilação realizada sem erros em várias etapas.
+- Testada a gravação de várias corridas no historico.txt.
+- Confirmado que o ficheiro mantém os registos com data, hora e tempo.
+- Confirmada a apresentação de uma entrada do histórico no formato pretendido.
+- Identificado um problema ainda pendente no carregamento/apresentação de todas as entradas do histórico.
+
+**Resultado da sessão:**
+- O sistema de histórico ficou parcialmente implementado e funcional na gravação dos dados, ficando pendente a correção do carregamento e apresentação consistente das várias corridas.
+- Durante os testes foi também estabelecido um novo recorde pessoal de **24,39575 segundos**, melhorando o anterior de **24,51 segundos** em aproximadamente **0,11 segundos**. 🏆
+
+**Próximo passo planeado:**
+- Corrigir o carregamento das várias entradas do histórico.
+- Confirmar a apresentação das 10 corridas.
+- Melhorar visualmente o histórico com cores.
+- Destacar o melhor tempo.
+- Continuar a evolução visual do jogo.
+- Atualizar os apontamentos técnicos relacionados com o histórico e a recursão.
+
+**Linhas de código escritas na sessão (estimativa):** 74

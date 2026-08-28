@@ -24,6 +24,8 @@ int main(void)
     // Menu
     int programa_ativo = 1;
 
+    load_history();
+
     while (programa_ativo)
     {
         flushinp();

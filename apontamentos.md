@@ -67,3 +67,8 @@ Diferenças comparativamente a double last_move = get_time_ms();
 
 Porquê `CLOCK_MONOTONIC`?
 - Neste projeto não precisamos de saber a hora atual, mas sim quanto tempo passou entre dois acontecimentos. O relógio monotónico é apropriado para esse objetivo porque foi concebido para medir intervalos de tempo e não é afetado pelas alterações da hora do sistema.
+
+`CLOCK_MONOTONIC` -> medir duração
+
+`time() + localtime()` -> saber quando aconteceu
+
