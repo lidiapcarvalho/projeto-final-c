@@ -6,8 +6,8 @@ LDFLAGS = -lncursesw
 
 TARGET = corrida
 
-SOURCES = main.c game.c track.c car.c timer.c menu.c
-OBJECTS = main.o game.o track.o car.o timer.o menu.o
+SOURCES = main.c game.c track.c car.c timer.c menu.c history.c
+OBJECTS = main.o game.o track.o car.o timer.o menu.o history.o
 
 $(TARGET): $(OBJECTS)
 	$(CC) $(OBJECTS) $(LDFLAGS) -o $(TARGET)
@@ -29,6 +29,9 @@ timer.o: timer.c timer.h
 
 menu.o: menu.c menu.h
 	$(CC) $(CFLAGS) -c menu.c
+
+history.o: history.c history.h
+	$(CC) $(CFLAGS) -c history.c
 
 clean:
 	rm -f $(OBJECTS) $(TARGET)

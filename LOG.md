@@ -39,7 +39,7 @@
 - Criados ficheiros `car.c`e `car.h`, definida uma posição inicial para o carro e implementada a função `draw_car()`.
 
 **Maior dificuldade:**
-- Compreender a utilização do `ncurses`para desenhar elementos em posições específicas do terminal e integrar os diferentes ficheiros do projeto através do `Makefil`.
+- Compreender a utilização do `ncurses`para desenhar elementos em posições específicas do terminal e integrar os diferentes ficheiros do projeto através do `Makefile`.
 
 **Como resolvi:**
 - Utilizei `mvprintw()` para posicionar os elementos no terminal e organizei e implementação da pista e do carro em ficheiros separados. O `main.c`ficou responsável por inicializar o `ncurses`e chamar as funções necessárias.
@@ -87,7 +87,7 @@
 
 **Como resolvi:**
 - Foram calculados as novas coordenadas do carro antes de alterar a sua posição.
-- A posição foi válida através da matriz da pista, permitindo o movimento apenas sobre `#`ou `=`.
+- A posição foi válida através da matriz da pista, permitindo o movimento apenas sobre `#`(pista) ou `=`(linha da meta).
 - Foi também adicionada uma verificação dos limites da matriz e uma condição para sair do ciclo através da tecla `Q/q`.
 
 **Próximo passo planeado:**
@@ -383,3 +383,44 @@ Durante os testes da sessão foi alcançado um novo melhor tempo: 26,43 segundos
 - Melhorar visualmente o ecrã de resultados.
 
 **Linhas de código escritas na sessão (estimativa):** 35
+
+## Sessão 13 - 28/08/2026 - 09:00 - 12:30
+
+**Funcionalidades implementadas:**
+- Revisão do feedback do professor sobre a lógica da pista.
+- Alteração do sistema de checkpoints, passando de coordenadas fixas para uma matriz própria de checkpoints.
+- Revisão e compreensão do uso de `extern` para variáveis globais entre ficheiros.
+- Revisão da função `clock_gettime()` e do relógio `CLOCK_MONOTONIC`, utilizado para medir intervalos de tempo.
+- Criação dos módulos `history.c` e `history.h`.
+- Implementação do armazenamento dos tempos das corridas.
+- Criação de um histórico simples de corridas.
+- Implementação de uma função recursiva para percorrer e apresentar o histórico.
+- Adição da opção "Histórico" ao menu.
+- Integração do histórico no fluxo principal do jogo.
+- Testes de compilação e execução realizados com sucesso.
+
+**Maior dificuldade:**
+- A principal dificuldade foi reorganizar o sistema de checkpoints para deixar de depender diretamente das coordenadas da pista. 
+- Foi criada uma matriz `checkpoints[]`, permitindo separar a localização dos sensores da lógica de contagem das voltas.
+- Também foi necessário compreender melhor a utilização de `clock_gettime()` com `CLOCK_MONOTONIC` e distinguir a medição da duração da corrida do registo futuro da data e hora.
+
+**Recursão:**
+Foi implementada a função `draw_history_recursive()`, que percorre os tempos armazenados no histórico até atingir o número de corridas registadas. A função possui uma condição de paragem e chama-se novamente com o índice seguinte.
+
+**Teste realizados:**
+- `make` executado sem erros.
+- Corrida completa realizada com sucesso.
+- Tempo da corrida guardado corretamente.
+- Histórico apresentado através do menu.
+- Regresso ao menu após consultar o histórico confirmado.
+- Reinício de novas corridas confirmado.
+
+**Recorde 🏆:** 24,51 segundos
+
+**Próximo passo planeado:**
+- Completar os apontamentos sobre `clock_gettime()`, `CLOCK_MONOTONIC` e `struct timespec`.
+- Evoluir o histórico para guardar data, hora e tempo das corridas de forma persistente.
+- Atualizar o `README.md`.
+- Implementar a componente visual dos setores e cores.
+
+**Linhas de código escritas na sessão (estimativa):** 50

@@ -9,7 +9,8 @@ int menu(void)
 
     mvprintw(2, 10, "CORRIDA!");
     mvprintw(4, 10, "1. Iniciar Corrida");
-    mvprintw(5, 10, "2. Sair");
+    mvprintw(5, 10, "2. Histórico");
+    mvprintw(6, 10, "3. Sair");
     mvprintw(7, 10, "Escolha uma opção: ");
     
     refresh();

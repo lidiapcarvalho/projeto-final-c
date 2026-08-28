@@ -6,6 +6,7 @@
 #include <time.h>
 #include "timer.h"
 #include "menu.h"
+#include "history.h"
 
 int main(void)
 {
@@ -33,10 +34,17 @@ int main(void)
 
         int opcao = menu();
 
-        if (opcao == '2')
+        if (opcao == '3')
         {
             programa_ativo = 0;
             break;
+        }
+
+        if (opcao == '2')
+        {
+            draw_history();
+            getch();
+            continue;
         }
 
         keypad(stdscr, TRUE);
@@ -121,6 +129,7 @@ int main(void)
 
             if (race_finished == 1)
             {
+                save_race_time(race_time);
                 draw_results(race_time);
                 napms(2000);
                 break;

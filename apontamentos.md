@@ -57,7 +57,13 @@ Diferenças comparativamente a double last_move = get_time_ms();
 [`extern char track[9][14];`](track.h#L4)
 - `extern` -> track existe, mas está definido em outro ficheiro
 
-[`timer.h`](timer.h)
+### [`timer.h`](timer.h)
 
 [`double get_time_ms(void);`](timer.h#L4)
 - `double` -> tipo numérico utilizado para representar números com casas decimais e maior precisão do que `float`
+
+**temporário:**
+`clock_gettime()` e `CLOCK_MONOTONIC` - estudar/documentar: utilizados no projeto para medir intervalos de tempo da corrida e controlar os atrasos dos movimentos. O relógio monotónico é adequado para medir durações porque não depende da alteração da hora do sistema. Rever posteriormente `struct timespec`, `tv_sec`, `tv_nsec` e conversão para milissegundos.
+
+Porquê `CLOCK_MONOTONIC`?
+- Neste projeto não precisamos de saber a hora atual, mas sim quanto tempo passou entre dois acontecimentos. O relógio monotónico é apropriado para esse objetivo porque foi concebido para medir intervalos de tempo e não é afetado pelas alterações da hora do sistema.

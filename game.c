@@ -58,17 +58,17 @@ void start_race(void)
 void update_lap(void)
 {
     // Checkpoint 1 - (6,0)
-    if (car_row == 6 && car_col == 0)
+    if (checkpoints[car_row][car_col] == '1')
     {
         checkpoint = 1;
     }
     // Checkpoint 2 - (0,5)
-    if (car_row == 0 && car_col == 5 && checkpoint == 1)
+    if (checkpoints[car_row][car_col] == '2' && checkpoint == 1)
     {
         checkpoint = 2;
     }
     // Checkpoint 3 - (4,10)
-    if (car_row == 4 && car_col == 10 && checkpoint == 2)
+    if (checkpoints[car_row][car_col] == '3' && checkpoint == 2)
     {
         checkpoint = 3;
     }

@@ -3,6 +3,7 @@
 
 char track[9][14] =
 {
+    // "#" = pista | "=" = linha de meta | espaço = fora da pista
     "  ###########",
     "  #         #",
     "  #         #",
@@ -13,6 +14,20 @@ char track[9][14] =
     "#       #    ",
     "###===###    "
 };
+
+char checkpoints[9][14] =
+{
+    "     2       ",
+    "             ",
+    "             ",
+    "             ",
+    "          3  ",
+    "             ",
+    "1            ",
+    "             ",
+    "             "
+};
+
 
 void draw_track(void)
 {
