@@ -32,10 +32,14 @@ char checkpoints[9][14] =
 void draw_track(void)
 {
     // Matriz da pista
+    attron(COLOR_PAIR(2));
+
     for (int i = 0; i < 9; i++)
     {
         mvprintw(TRACK_START_ROW + i, 0, "%s", track[i]);
-    }    
+    }
+
+    attroff(COLOR_PAIR(2));    
 }
 
 

@@ -33,7 +33,11 @@ void change_speed(int value)
 
 void draw_car()
 {
+    attron(COLOR_PAIR(1));
+
     mvprintw(TRACK_START_ROW + car_row, car_col, "@");
+
+    attroff(COLOR_PAIR(1));
 
     mvprintw(13, 0, "Velocidade: %d00 km/h", speed);
 }

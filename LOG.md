@@ -487,6 +487,11 @@ Inicialmente, apenas a primeira corrida existente no ficheiro era apresentada. O
 
 Posteriormente, foi necessário adaptar o carregamento para que, quando existem mais de 10 corridas, sejam mantidas apenas as 10 mais reccentes. Durante esta alteração surgiram problemas na apresentação das datas, que foram corrigidis através da utilização de `strcpy()` para copiar corretamente os dados entre as posições dos arrays.
 
+**Como resolvi:**
+Comecei por adaptar o sistema de histórico para guardar, além do tempo a data e a hora de cada corrida. Durante os testes, detetei problemas na leitura e apresentação dos dados, nomeadamente na conversão dos tempos e na apresentação das últimas 10 corridas. 
+- Analisei os valores armazenados no ficheiro `historico.txt` e ajustei o `load_history()` para ler corretamente cada campo e manter apenas as corridas mais recentes. 
+- Após vários testes, confirmei que o histórico era carregado corretamente quando o programa era executado novamente. 
+
 **Resultado da sessão:**
 O sitema de histórico encontra-se funcional, apresentando as 10 corridas mais recentes data, hora e tempo. O ficheiro `historico.txt` continua a preservar todos os registos realizados.
 
@@ -498,3 +503,44 @@ O `README.md` encontra-se estruturado e parcialmente preenchido.
 - Continuar a desenvolver a componente visual do jogo.
 
 **Linhas de código escritas na sessão (estimativa):** 52
+
+## Sessão 16 - 29/08/2026 - 19:45 - 22:15
+
+**Funcionalidades implementadas:**
+- Aplicação de cores à interface do jogo:
+    - vermelho para o carro;
+    - verde para o melhor tempo;
+    - amarelo para o tempo mais lento;
+    - branco para os restantes tempos e para a pista.
+- Implementação da identificação visual do melhor e do pior tempo no histórico.
+- Adição de um resumo do melhor tempo e do tempo mais lento no histórico de corridas.
+- Ajustes na apresentação da pista.
+- Verificação da apresentação das últimas 10 corridas.
+- Teste geral das funcionalidades do jogo após as alterações visuais.
+
+**Maior dificuldade:**
+
+A principal dificuldade esteve na implementação da identificação e apresentação dos melhores e piores tempos a partir dos valores carregados do histórico. Foi necessário corrigir a forma como os índices das corridas eram utilizados para associar cada tempo à respetiva cor.
+
+**Como resolvi:**
+- Para implementar as cores dos tempos, comecei por identificar o melhor e o pior valor do histórico. Durante os testes, as cores não estavam a ser aplicadas corretamente, pelo que utilizei valores de diagnóstico para verificar os dados armazenados no vetor `race_times`. 
+- Percebi que a comparação direta dos valores não estava a funcionar como pretendido e alterei a lógica para guardar os índices correspondentes ao melhor e ao pior tempo. Esses índices passaram depois a ser utilizados na função recursiva para aplicar a cor correta a cada corrida. 
+- Por fim, adicionei um resumo do melhor e do pior tempo e testei novamente todo o histórico.
+
+**Testes realizados:**
+- Compilação do projeto sem erros.
+- Verificação das cores do carro e dos tempos.
+- Verificação do cálculo do melhor e do pior tempo.
+- Verificação da apresentação do histórico.
+- Teste geral do jogo, confirmando que as funcionalidades existentes continuam a funcionar corretamente.
+
+**Resultado da sessão:**
+O jogo encontra-se funcional e com a interface visual definida. As principais funcionalidades previstas estão implementadas e testadas.
+
+**Próximo passo planeado:**
+- Rever os apontamentos do projeto.
+- Rever e completar o `README.md`.
+- Fazer uma revisão final do código e da documentação.
+- Realizar os testes finais antes da entrega.
+
+**Linhas de código escritas na sessão (estimativa):** 69

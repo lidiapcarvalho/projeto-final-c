@@ -9,6 +9,8 @@ double race_times[MAX_RACES];
 char race_dates[MAX_RACES][11];
 char race_hours[MAX_RACES][6];
 int race_count = 0;
+int indice_melhor = 0;
+int indice_pior = 0;
 
 void save_race_time(double race_time)
 {
@@ -48,7 +50,38 @@ void draw_history(void)
     
     mvprintw(2, 10, "HISTÓRICO DE CORRIDAS");
 
+    if (race_count > 0)
+    {
+        double melhor_tempo = race_times[0];
+        double pior_tempo = race_times[0];
+        
+        indice_melhor = 0;
+        indice_pior = 0;
+
+        for (int i = 1; i < race_count; i++)
+        {
+            if (race_times[i] < melhor_tempo)
+            {
+                melhor_tempo = race_times[i];
+                indice_melhor = i;
+            }
+
+            if (race_times[i] > pior_tempo)
+            {
+                pior_tempo = race_times[i];
+                indice_pior = i;
+            }
+        }
     draw_history_recursive(0);
+
+    attron(COLOR_PAIR(4));
+    mvprintw(16, 10, "Melhor tempo: %.2f s", melhor_tempo / 1000.0);
+    attroff(COLOR_PAIR(4));
+
+    attron(COLOR_PAIR(3));
+    mvprintw(17, 10, "Tempo mais lento: %.2f s", pior_tempo / 1000.0);
+    attroff(COLOR_PAIR(3));
+    }
 
     refresh();
 }
@@ -59,12 +92,30 @@ void draw_history_recursive(int indice)
     {
         return;
     }    
+
+    if (race_count > 1 && indice == indice_melhor)
+    {
+        attron(COLOR_PAIR(4));
+    }
+    else if (race_count > 1 && indice == indice_pior)
+    {
+        attron(COLOR_PAIR(3));
+    }
+    else
+    {
+        attron(COLOR_PAIR(2));
+    }
+
     mvprintw(4 + indice, 10, 
             "Corrida %d | %s | %s | %.2f s",
             indice + 1,
             race_dates[indice],
             race_hours[indice],
             race_times[indice] / 1000.0);
+
+    attroff(COLOR_PAIR(2));
+    attroff(COLOR_PAIR(3));
+    attroff(COLOR_PAIR(4));
 
     draw_history_recursive(indice + 1);
 }
