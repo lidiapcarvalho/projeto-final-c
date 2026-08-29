@@ -3,6 +3,7 @@
 #include "history.h"
 #include <time.h>
 #include <stdlib.h>
+#include <string.h>
 
 double race_times[MAX_RACES];
 char race_dates[MAX_RACES][11];
@@ -80,23 +81,46 @@ void load_history()
 
     char tempo_texto[30];
 
-    while (race_count < MAX_RACES &&
-            fscanf(ficheiro, "%10[^;];%5[^;];%29[^\n]",
-                race_dates[race_count],
-                race_hours[race_count],
-                tempo_texto) == 3)
-            // fscanf -> lê valores de ficheiro
+    while (1)
     {
-        for (int i = 0; tempo_texto[i] != '\0'; i++)
-        {
-            if (tempo_texto[i] == ',')
-            {
-                tempo_texto[i] = '.';
-            }
-        }
-        race_times[race_count] = atof(tempo_texto);
+        char data[11];
+        char hora[6];
 
-        race_count++;
+        if (fscanf(ficheiro, " %10[^;];%5[^;];%29[^\n]",
+            // fscanf -> lê valores de ficheiro
+            data,
+            hora,
+            tempo_texto) != 3)
+        {
+            break;
+        }
+
+        double tempo = atof(tempo_texto);
+
+        if (race_count < MAX_RACES)
+        {
+            /* Ainda há espaço no histórico */
+            snprintf(race_dates[race_count], 11, "%s", data);
+            snprintf(race_hours[race_count], 6, "%s", hora);
+            race_times[race_count] = tempo;
+
+            race_count++;
+        }
+        else
+        {
+            /* Deslocar as corridas para manter apenas as 10 últimas */
+            for (int i = 0; i < MAX_RACES - 1; i++)
+            {
+                strcpy(race_dates[i], race_dates[i + 1]);
+                strcpy(race_hours[i], race_hours[i + 1]);
+                race_times[i] = race_times[i + 1];
+            }
+
+            /* Guardar a nova corrida na última posição */
+            strcpy(race_dates[MAX_RACES - 1], data);
+            strcpy(race_hours[MAX_RACES - 1], hora);
+            race_times[MAX_RACES - 1] = tempo;
+        }
     }
 
     fclose(ficheiro);

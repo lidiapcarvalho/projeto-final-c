@@ -467,3 +467,34 @@ Foi implementada a função `draw_history_recursive()`, que percorre os tempos a
 - Atualizar os apontamentos técnicos relacionados com o histórico e a recursão.
 
 **Linhas de código escritas na sessão (estimativa):** 74
+
+## Sessão 15 - 29/08/2026 - 13:30 - 19:35
+
+**Funcionalidades implementadas:**
+- Criado a estrutura inicial do `README.md`.
+- Documentadas as funcionalidades já implementadas no projeto.
+- Documentado o sistema de medicação do tempo através de `clock_gettime()` e `CLOCK_MONOTONIC`.
+- Documwntado o sistema de histórico de corrida.
+- Corrigindo o carregamento de várias corridas a partir do `historico.txt`.
+- Implementado o armazenamento das 10 corridas mais recentes em memória.
+- Mantido o ficheiro `historico.txt` com histórico completo das corridas.
+- Corrigida a apresentação das datas no histórico.
+- Confirmado o funcionamento do histórico com data, hora e tempode corrida.
+
+**Maior dificuldade:**
+A principal dificuldade desta sessão foi corrigir o carregamento do histórico. 
+Inicialmente, apenas a primeira corrida existente no ficheiro era apresentada. O problema estava relacionado com a leitura das linhas através de `fscanf()`, tendo sido necessário permitir que os espaços em branco e mudanças de linha fossem ignorados entre leituras.
+
+Posteriormente, foi necessário adaptar o carregamento para que, quando existem mais de 10 corridas, sejam mantidas apenas as 10 mais reccentes. Durante esta alteração surgiram problemas na apresentação das datas, que foram corrigidis através da utilização de `strcpy()` para copiar corretamente os dados entre as posições dos arrays.
+
+**Resultado da sessão:**
+O sitema de histórico encontra-se funcional, apresentando as 10 corridas mais recentes data, hora e tempo. O ficheiro `historico.txt` continua a preservar todos os registos realizados.
+
+O `README.md` encontra-se estruturado e parcialmente preenchido.
+
+**Próximo passo planeado:**
+- Melhorar a interface do jogo através da utilização de cores.
+- Avaliar a utilização de cores para distinguir a pista, o carro, a linha de meta e outras informações relevantes.
+- Continuar a desenvolver a componente visual do jogo.
+
+**Linhas de código escritas na sessão (estimativa):** 52
