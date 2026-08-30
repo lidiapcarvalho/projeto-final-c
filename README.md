@@ -16,7 +16,7 @@ No final das três voltas, o tempo total da corrida é apresentado e guardado no
 
 ## 🎮 Como jogar
 
-> Ao iniciar o programa, é apresentado um menu principal onde o jogador pode escolher entre iniciar uma corrida, consultar o histórico de corridas ou sair do programa.
+Ao iniciar o programa, é apresentado um menu principal onde o jogador pode escolher entre iniciar uma corrida, consultar o histórico de corridas ou sair do programa.
 
 Durante a corrida, o jogador controla o carro através das teclas direcionais.
 
@@ -107,6 +107,7 @@ Para a apresentação dos resultado foi implementada uma função recursiva, `dr
 Cada registo é apresentado com o número da corrida, a data, a hora e o respetivo tempo:
 
 Corrida 1 | 28/08/2026 | 18:59 | 32,00 s
+
 Corrida 2 | 28/08/2026 | 20:17 | 26,85 s
 
 O histórico apresenta também:
@@ -122,11 +123,10 @@ Desta forma, o sistema permite acompanhar a evolução das corridas recentes e m
 A interface do jogo é apresentada em modo texto através da biblioteca ncurses.
 
 Foram utilizadas diferentes cores para facilitar a leitura das informações apresentadas ao jogador:
-
-🔴 Vermelho — carro durante a corrida.
-🟢 Verde — melhor tempo de sempre.
-🟡 Amarelo — tempo mais lento entre as 10 corridas apresentadas.
-⚪ Branco — restantes tempos e elementos da pista.
+- 🔴 Vermelho — carro durante a corrida.
+- 🟢 Verde — melhor tempo de sempre.
+- 🟡 Amarelo — tempo mais lento entre as 10 corridas apresentadas.
+- ⚪ Branco — restantes tempos e elementos da pista.
 
 A utilização de cores permite distinguir rapidamente os diferentes tipos de informação sem alterar o funcionamento do jogo.
 
