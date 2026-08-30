@@ -29,7 +29,6 @@ void start_race(void)
 
     // Cincos luzes apagadas
     attron(COLOR_PAIR(2) | A_BOLD);
-    // A_BOLD -> torna a apresentação mais intensa
     mvprintw(1, 10, "[●] [●] [●] [●] [●]");
     attroff(COLOR_PAIR(2) | A_BOLD);
 

@@ -18,11 +18,9 @@ int main(void)
     start_color(); // sistema de cores
 
     init_pair(1, COLOR_RED, COLOR_BLACK);
-    // par de cor nº 1, texto vermelho, fundo preto
     init_pair(2, COLOR_WHITE, COLOR_BLACK);
     init_pair(3, COLOR_YELLOW, COLOR_BLACK);
     init_pair(4, COLOR_GREEN, COLOR_BLACK);
-
 
     // Menu
     int programa_ativo = 1;
@@ -32,7 +30,6 @@ int main(void)
     while (programa_ativo)
     {
         flushinp();
-        // limpa todas as teclas que estejam pendentes no buffer de entrada, para evitar que a tecla ENTER da corrida anterior seja lida como opção do menu
 
         nodelay(stdscr, FALSE);
         timeout(-1);
@@ -51,6 +48,8 @@ int main(void)
             getch();
             continue;
         }
+
+        show_instructions();
 
         keypad(stdscr, TRUE);
         nodelay(stdscr, TRUE);
@@ -72,8 +71,6 @@ int main(void)
             {
                 race_time = current_time - race_start;
             }
-
-            // clear(); // temporário
 
             if (race_started == 1)
             {

@@ -9,8 +9,8 @@ double race_times[MAX_RACES];
 char race_dates[MAX_RACES][11];
 char race_hours[MAX_RACES][6];
 int race_count = 0;
-int indice_melhor = 0;
-int indice_pior = 0;
+double melhor_tempo_historico = 0;
+double pior_tempo_atual = 0;
 
 void save_race_time(double race_time)
 {
@@ -28,7 +28,6 @@ void save_race_time(double race_time)
     }
 
     FILE *ficheiro = fopen("historico.txt", "a");
-    // "a" -> append
 
     if (ficheiro != NULL)
     {
@@ -52,26 +51,17 @@ void draw_history(void)
 
     if (race_count > 0)
     {
-        double melhor_tempo = race_times[0];
+        double melhor_tempo = melhor_tempo_historico;
         double pior_tempo = race_times[0];
-        
-        indice_melhor = 0;
-        indice_pior = 0;
 
         for (int i = 1; i < race_count; i++)
         {
-            if (race_times[i] < melhor_tempo)
-            {
-                melhor_tempo = race_times[i];
-                indice_melhor = i;
-            }
-
             if (race_times[i] > pior_tempo)
             {
                 pior_tempo = race_times[i];
-                indice_pior = i;
             }
         }
+        pior_tempo_atual = pior_tempo;
     draw_history_recursive(0);
 
     attron(COLOR_PAIR(4));
@@ -93,11 +83,11 @@ void draw_history_recursive(int indice)
         return;
     }    
 
-    if (race_count > 1 && indice == indice_melhor)
+    if (race_times[indice] == melhor_tempo_historico)
     {
         attron(COLOR_PAIR(4));
     }
-    else if (race_count > 1 && indice == indice_pior)
+    else if (race_times[indice] == pior_tempo_atual)
     {
         attron(COLOR_PAIR(3));
     }
@@ -123,7 +113,6 @@ void draw_history_recursive(int indice)
 void load_history()
 {
     FILE *ficheiro = fopen("historico.txt", "r");
-    // "r" -> abre o ficheiro para leitura
 
     if (ficheiro == NULL)
     {
@@ -138,7 +127,6 @@ void load_history()
         char hora[6];
 
         if (fscanf(ficheiro, " %10[^;];%5[^;];%29[^\n]",
-            // fscanf -> lê valores de ficheiro
             data,
             hora,
             tempo_texto) != 3)
@@ -147,6 +135,11 @@ void load_history()
         }
 
         double tempo = atof(tempo_texto);
+
+        if (melhor_tempo_historico == 0 || tempo < melhor_tempo_historico)
+        {
+            melhor_tempo_historico =  tempo;
+        }
 
         if (race_count < MAX_RACES)
         {

@@ -544,3 +544,36 @@ O jogo encontra-se funcional e com a interface visual definida. As principais fu
 - Realizar os testes finais antes da entrega.
 
 **Linhas de código escritas na sessão (estimativa):** 69
+
+## Sessão 17 - 30/08/2026 - 14:30 - 18:00
+
+**Funcionalidades implementadas:**
+- Criação de um ecrã de instruções apresentado antes do início da corrida.
+- Apresentação dos controlos e regras principais do jogo antes da corrida.
+- Ajuste do início da corrida para que o cronómetro continue a começar apenas quando a corrida é efetivamente iniciada.
+- Alteração do sistema de histórico para considerar o melhor tempo de sempre.
+- Manutenção das 10 corridas mais recentes para apresentação no histórico.
+- Separação entre o melhor tempo de sempre e o tempo mais lento das 10 corridas apresentadas.
+- Ajuste das cores do histórico de acordo com os tempos apresentados.
+- Revisão e organização dos apontamentos técnicos.
+- Revisão e conclusão das principais secções do `README.md`.
+- Documentação do sistema de medição do tempo, histórico, interface, estrutura do projeto e conceitos de programação utilizados.
+
+**Maior dificuldade:**
+A principal dificuldade esteve no sistema de histórico, nomeadamente em conciliar a apresentação das 10 corridas mais recentes com a necessidade de manter o melhor tempo de sempre.
+
+Foi necessário garantir que o recorde não desaparecesse quando a corrida correspondente deixasse de estar entre as 10 corridas mantidas em memória.
+
+Também foi necessário ajustar a lógica das cores, uma vez que o melhor tempo de sempre pode já não estar presente na lista apresentada.
+
+**Como resolvi:**
+Foi criada uma variável para guardar o melhor tempo encontrado em todo o ficheiro `historico.txt`. Durante o carregamento do histórico, cada tempo é comparado com o recorde atual, permitindo manter o melhor resultado independentemente das 10 corridas apresentadas.
+
+A apresentação do histórico passou a distinguir entre o melhor tempo de sempre e o tempo mais lento das corridas atualmente apresentadas.
+
+Foi também criado um ecrã de instruções antes da corrida. Para evitar alterar a lógica que já estava implementada, a função `show_instructions()` ficou responsável apenas pela apresentação das instruções, enquanto o `main.c` continua a tratar o `ENTER` e o início efetivo da corrida.
+
+**Observações:**
+Esta sessão foi dedicada principalmente à revisão, documentação e finalização do projeto, incluindo os apontamentos e o `README.md`.
+
+**Linhas de código escritas na sessão (estimativa):** 66
